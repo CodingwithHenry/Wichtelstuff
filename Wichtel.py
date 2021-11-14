@@ -13,9 +13,9 @@ def wichtelmail(Wichtel , Wichtelemail , empfaenger):
     msg = MIMEMultipart()
     msg['From'] = senderEmail
     msg['To'] = empfangsEmail
-    msg['Subject'] = "Auftrag vom Nordpol (Jetzt der Richtige)"
+    msg['Subject'] = "Finaler Auftrag vom Nordpol"
 
-    emailText = "Hallo "+Wichtel  +", ich brauche deine Hilfe! \n Die Gesundheitsbehörde auf dem Nordpol hat die 2G Regelung am Arbeitsplatz eingeführt. \n da sehr viele meiner Mitarbeiter noch nicht geimpft sind, sind wir somit mit der Geschenkelieferung im Zeitdruck. Daher würde ich dich bitten, für  "+ empfaenger +" beim gemeinsamen Weihnachtsfest ein kleines Wichtel Geschenk zu organisieren. \r Liebe Grüße und HOHOHOHOHO dein Weihnachtsmann "
+    emailText = "Hallo "+Wichtel  +" nach einigen technischen Schwierigkeiten ist dies nun dein endgültiger Auftrag für Weihnachten. Denn wie du sicherlich weißt, wurde auf dem Nordpol 2g Regelungen am Arbeitsplatz eingeführt. Da viele meiner Mitarbeiter noch nicht geimpft sind können diese nun nicht Arbeiten kommen. Homeoffice ist auch schwierig in meiner Branche. Daher würde ich dich bitten, für" + empfaenger+" eine Kleinigkeit für das Weihnachtsfest im Hause Beiker/Ernst mitzubringen. Vielen dank im vorraus. Dein Weihnachtsmann ps. Wenn es jetzt auch nicht funktioniert hat wird das ganze halt Analog gemacht ich bin sowieso nicht überzeugt von diesem ganzen Technick schnick schnack"
     msg.attach(MIMEText(emailText, 'html'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)  # Die Server Daten
@@ -28,24 +28,18 @@ def wichtelmail(Wichtel , Wichtelemail , empfaenger):
 
 Wichtelliste=[("Henry","HenryBeiker@aol.com"),("Ellen","ellen.beiker@aol.com"),
 ("Katja","KatjaBeiker@aol.com"),("Thomas","thomsen69@arcor.de"),
-    ("Janina", "janinaernst@yahoo.de"), ("Micha", "Michael.Maßow@outlook.com".encode()), ("Simon", "simon@simon-steigner.de"), ("Alina", "alinaschmitthenner@aol.com")]
+    ("Janina", "janinaernst@yahoo.de"), ("Micha", "michael.massow@outlook.com"), ("Simon", "simon@simon-steigner.de"), ("Alina", "alinaschmitthenner@aol.com")]
 empfanger= Wichtelliste
 
 while (x< 8):
     Wichtel = random.sample(Wichtelliste,1)
     empfaenger= random.sample(empfanger,1)
-    if(Wichtel[0][0]=="Micha"):
-        x=x+1
-        print(empfaenger[0][0])
-        Wichtelliste = [elem for elem in Wichtelliste if elem not in Wichtel]
-        empfanger = [elem for elem in empfanger if elem not in empfaenger]
-        
-    elif(Wichtel[0][0]!=empfaenger[0][0]):
-        #wichtelmail(Wichtel[0][0],Wichtel[0][1],empfaenger[0][0])
+    if (Wichtel[0][0]!=empfaenger[0][0]):
+        #wichtelmail(Wichtel[0][0],Wichtel[0][1],empfaenger[0][0]) #auskommentieren zum abschicken der mails
         #print("Wichtel", Wichtel[0][0], "mit Mail", Wichtel[0][1], "schenkt", empfaenger[0][0])
         Wichtelliste= [elem for elem in Wichtelliste if elem not in Wichtel]
         empfanger=[elem for elem in empfanger if elem not in empfaenger]
         x=x+1
         #print(x,Wichtel,empfaenger)
-
+print("Alles abgeschickt")
 
