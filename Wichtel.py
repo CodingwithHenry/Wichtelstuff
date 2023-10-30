@@ -31,15 +31,49 @@ Wichtelliste=[("Henry","HenryBeiker@aol.com"),("Ellen","ellen.beiker@aol.com"),
     ("Janina", "janinaernst@yahoo.de"), ("Micha", "michael.massow@outlook.com"), ("Simon", "simon@simon-steigner.de"), ("Alina", "alinaschmitthenner@aol.com")]
 empfanger= Wichtelliste
 
+partner=[("Ellen","Simon"),("Katja","Thomas"),("Henry","Alina"),("Janina","Micha")]
+
+def partnerCheck(partner_1:str,partner_2:str):
+    partner = [("Ellen", "Simon"), ("Katja", "Thomas"),
+               ("Henry", "Alina"), ("Janina", "Micha")]
+    if (partner_1,partner_2) in partner:
+        return False
+    if (partner_2,partner_1) in partner:
+        return False
+    return True
+wichtelpartner=list(tuple())
+
+def checkPairings(Wichtelpartnerliste:list(),partner):
+    for pair in Wichtelpartnerliste:
+        if pair[0]==partner[1] or not partnerCheck(pair[0],pair[1]) :
+            return False
+    return True
+
+        
+
 while (x< 8):
     Wichtel = random.sample(Wichtelliste,1)
     empfaenger= random.sample(empfanger,1)
-    if (Wichtel[0][0]!=empfaenger[0][0]):
+    wichtelpartner.append((Wichtel,empfaenger))
+    x=x+1
+
+while(not checkPairings(wichtelpartner,partner)):
+    wichtelpartner.clear()
+    while (x < 8):
+        Wichtel = random.sample(Wichtelliste, 1)
+        empfaenger = random.sample(empfanger, 1)
+        wichtelpartner.append((Wichtel, empfaenger))
+        x = x+1
+
+for pair in wichtelpartner:
+    print(pair)
+    '''
+    if (Wichtel[0][0]!=empfaenger[0][0] and partnerCheck(Wichtel[0][0],empfaenger[0][0])):
         #wichtelmail(Wichtel[0][0],Wichtel[0][1],empfaenger[0][0]) #auskommentieren zum abschicken der mails
-        #print("Wichtel", Wichtel[0][0], "mit Mail", Wichtel[0][1], "schenkt", empfaenger[0][0])
+        print("Wichtel", Wichtel[0][0], "mit Mail", Wichtel[0][1], "schenkt", empfaenger[0][0])
         Wichtelliste= [elem for elem in Wichtelliste if elem not in Wichtel]
         empfanger=[elem for elem in empfanger if elem not in empfaenger]
-        x=x+1
+        '''
         #print(x,Wichtel,empfaenger)
 print("Alles abgeschickt")
 
